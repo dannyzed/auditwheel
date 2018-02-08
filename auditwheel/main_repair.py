@@ -60,12 +60,6 @@ def execute(args, p):
     wheel_abi = analyze_wheel_abi(args.WHEEL_FILE)
     reqd_tag = get_priority_by_name(args.PLAT)
 
-    if (reqd_tag > get_priority_by_name(wheel_abi.sym_tag)):
-        msg = ('cannot repair "%s" to "%s" ABI because of the presence '
-               'of too-recent versioned symbols. You\'ll need to compile '
-               'the wheel on an older toolchain.' %
-               (args.WHEEL_FILE, args.PLAT))
-        p.error(msg)
 
     if (reqd_tag > get_priority_by_name(wheel_abi.ucs_tag)):
         msg = ('cannot repair "%s" to "%s" ABI because it was compiled '
